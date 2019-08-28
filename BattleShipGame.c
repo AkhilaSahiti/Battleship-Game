@@ -11,7 +11,7 @@ void display()
 
 }
 
-void startBoard(int board[5][5])
+void startBoard(int board[][5])
 {
     int line, column;
         for(line=0 ; line < 5 ; line++ )
@@ -27,27 +27,18 @@ void showBoard(int board[][5])    //to show the display screen
         printf("\t1 \t2 \t3 \t4 \t5");
         printf("\n");
 
-        for(line=0 ; line <5 ; line++ )
-    {
-        printf("%d",line+1);
-        for(column=0 ; column < 5 ; column++ )
-            {
-        if(board[line][column]==-1)
-                {
+        for(line=0 ; line <5 ; line++ ){
+            printf("%d",line+1);
+            for(column=0 ; column < 5 ; column++ ){
+                if(board[line][column]==-1)
                     printf("\t-");
-                }
-   else if(board[line][column]=0)  // IF IS DOESNOT HIT THE SHIP
-            {
+                else if(board[line][column]=0)  // IF IS DOESNOT HIT THE SHIP
                     printf("\tX");
-            }
-      else if(board[line][column]==1)      //IF IT HIT THE SHIP
-            {
+                else if(board[line][column]==1)      //IF IT HIT THE SHIP
                     printf("\tH");
             }
-
-            }
-        printf("\n");
-    }
+            printf("\n");
+        }
 
 }
 
@@ -58,27 +49,24 @@ void startShips(int ships[][2])
         srand(time(NULL));
         int ship, last;
 
-        for(ship=0 ; ship < 3 ; ship++)
-//let's check if this shot was not tried
-          ships[ship][0]= rand()%5;
-//if it was, just get out of the 'do while' loop when draws a pair that was not tried
+        for(ship=0 ; ship < 3 ; ship++){
+            ships[ship][0]= rand()%5;
             ships[ship][1]= rand()%5;
-
-
-            for(last=0 ; last < ship ; last++)
-                {
+            
+            //let's check if this shot was not tried
+            //if it was, just get out of the 'do while' loop when draws a pair that was not tried
+            for(last=0 ; last < ship ; last++) {
                   if( (ships[ship][0] == ships[last][0])&&(ships[ship][1] == ships[last][1]) )
                     do
                     {
                         ships[ship][0]= rand()%5;
                         ships[ship][1]= rand()%5;
                     }while( (ships[ship][0] == ships[last][0])&&(ships[ship][1] == ships[last][1]) );
-                }
-
         }
     }
+}
 // To display the line,column and hits(H)
-void giveShot(int shot[2]
+void giveShot(int shot[2])
  {
 
         printf(" Enter Line No: ");
@@ -163,7 +151,8 @@ int main()
             }
             else
                 tip(shot,ships,attempts);
-              changeBoard(shot,ships,board);
+            
+            changeBoard(shot,ships,board);
 
 
         }while(hits!=3);
@@ -171,5 +160,5 @@ int main()
         printf("\n\n\n\n\n\n\n ----------!!!GAME FINISHED!!!-------------\n");
          printf("\n\nYou hit the three ships in %d attempts\n", attempts);
         showBoard(board);
-         printf("\n\n\n WANNA CHECK YOUR LUCK AGAIN!!?\n");
+        
 }
