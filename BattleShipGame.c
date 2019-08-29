@@ -32,9 +32,9 @@ void showBoard(int board[][5])    //to show the display screen
             for(column=0 ; column < 5 ; column++ ){
                 if(board[line][column]==-1)
                     printf("\t-");
-                else if(board[line][column]=0)  // IF IS DOESNOT HIT THE SHIP
+                else if(board[line][column]==0)  // IF IT DOESNOT HITS THE SHIP
                     printf("\tX");
-                else if(board[line][column]==1)      //IF IT HIT THE SHIP
+                else if(board[line][column]==1)      //IF IT HITS THE SHIP
                     printf("\tH");
             }
             printf("\n");
